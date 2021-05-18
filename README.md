@@ -28,7 +28,7 @@ To evalute we will use current Tweets, which were not present in the training da
 * sklearn
 * pandas
 * numpy
-* SNScraper
+* [SNScraper](https://github.com/JustAnotherArchivist/snscrape)
 * Bundestwitter [Twitterlist](https://twitter.com/i/lists/912241909002833921)
 
 ## Which resources you will be constructing yourself.
