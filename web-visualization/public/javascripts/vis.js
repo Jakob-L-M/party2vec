@@ -29,9 +29,20 @@ function handleMouseOut(mouse_event, data) {
 // function to create half circle diagramm
 function create_vis_svg() {
 
-    // todo data creation call
-    get_data(document.getElementById('input_field').value)
+    // data creation call
+    let py_data = get_data(document.getElementById('input_field').value)
 
+}
+
+function build_svg(py_data) {
+
+    py_data = JSON.parse(py_data)
+
+    for(let i = 0; i < data.length; i++) {
+        data[i].percent = py_data[i]
+    }
+
+    console.log(data)
     //clear vis_result
     document.getElementById('vis_result').innerHTML = ''
 
@@ -81,7 +92,7 @@ function create_vis_svg() {
 }
 
 function get_data(input_text) {
-    
+
     function postData(input_text) {
         $.ajax({
             type: "POST",
@@ -90,11 +101,11 @@ function get_data(input_text) {
             success: callbackFunc
         });
     }
-    
+
     function callbackFunc(response) {
         // do something with the response
-        console.log(response);
+        build_svg(response);
     }
-    
+
     postData(input_text);
 }
