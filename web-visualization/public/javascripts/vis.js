@@ -19,20 +19,6 @@ var svg = d3.select("#vis_result")
 
 // Dummy data
 // Will be output of python evaluation
-function postData(input) {
-    $.ajax({
-        type: "POST",
-        url: "./eval.py",
-        data: { param: input },
-        success: callbackFunc
-    });
-}
-
-function callbackFunc(response) {
-    // do something with the response
-    console.log(response);
-}
-postData()
 
 var data = [{ id: 1, party: 'Afd', percent: 0.09, passive_color: '#3D3BFB', active_color: '#1A18E0' },
 { id: 2, party: 'Union', percent: 0.16, passive_color: '#6F6F6F', active_color: '#151515' },
