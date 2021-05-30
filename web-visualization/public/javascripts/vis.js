@@ -30,6 +30,7 @@ function handleMouseOut(mouse_event, data) {
 function create_vis_svg() {
 
     // todo data creation call
+    get_data(document.getElementById('input_field').value)
 
     //clear vis_result
     document.getElementById('vis_result').innerHTML = ''
@@ -77,4 +78,23 @@ function create_vis_svg() {
         .style("stroke-width", "2px")
         .style("opacity", 0.7)
 
+}
+
+function get_data(input_text) {
+    
+    function postData(input_text) {
+        $.ajax({
+            type: "POST",
+            url: "/py",
+            data: { param: input_text },
+            success: callbackFunc
+        });
+    }
+    
+    function callbackFunc(response) {
+        // do something with the response
+        console.log(response);
+    }
+    
+    postData(input_text);
 }
