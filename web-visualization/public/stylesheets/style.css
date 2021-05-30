@@ -1,0 +1,59 @@
+#title {
+  font-size: 1000%;
+  font-family: 'Odibee Sans', cursive;
+  position: absolute;
+  text-align: center;
+  left: 00%;
+  width: 100%;
+  top: 10%;
+}
+
+#vis_result {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  height: 35%;
+  right: 0%;
+}
+
+#vis_result #svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#vis_result #g {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+}
+
+#text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 35%;
+  width: 50%;
+  height: 15%;
+  left: 25%;
+}
+#text #input_field {
+  position: absolute;
+  font-size: 1.37em;
+  width: 100%;
+  top: 0%;
+  height: 75%;
+  padding: 0px;
+  margin: 0px;
+  border: rgb(12, 156, 156) dotted 2px;
+  resize: none;
+}
+
+#text #classify_button {
+  position: absolute;
+  bottom: 0%;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 15%;
+}
