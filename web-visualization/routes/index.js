@@ -13,7 +13,7 @@ router.post('/py', function (req, res) {
   // result will be written here
   var python_return;
 
-  const python = spawn('python', ["./public/python/hello.py", tweet_text]);
+  const python = spawn('./venv/Scripts/python', ["./public/python/hello.py", tweet_text]);
   // collect data from script -> print out result in main method
   python.stdout.on('data', function (data) { //stdout
     console.log('Pipe data from python script ...');
