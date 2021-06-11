@@ -1,3 +1,5 @@
 .ipynb_*
 cleaned-data/mention-reply-regex.txt
 word_embedding/testing.ipynb
+word_embedding/logs/
+word_embedding/results.txt
