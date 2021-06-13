@@ -3,3 +3,5 @@ cleaned-data/mention-reply-regex.txt
 word_embedding/testing.ipynb
 word_embedding/logs/
 word_embedding/results.txt
+word_embedding/test_wordEm.ipynb
+word_embedding/test_afd_linke.ipynb
