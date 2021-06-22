@@ -7,3 +7,4 @@ word_embedding/test_wordEm.ipynb
 word_embedding/test_afd_linke.ipynb
 *.out
 word_embedding/embeddings_old/
+*.hdf5
