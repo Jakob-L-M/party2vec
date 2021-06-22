@@ -13,16 +13,22 @@ router.post('/py', function (req, res) {
   // result will be written here
   var python_return;
 
-  const python = spawn('./venv/Scripts/python', ["./public/python/hello.py", tweet_text]);
+  // spawn('python3', ...) for server. python 3.5.3
+  const python = spawn('./venv/python', ["./public/python/hello.py", tweet_text]);
   // collect data from script -> print out result in main method
   python.stdout.on('data', function (data) { //stdout
     console.log('Pipe data from python script ...');
     python_return = data.toString();
   });
+  python.stderr.on('data', function (data) {
+    console.log(data);
+    python_return = data.toString();
+  })
   // in close event we are sure that stream from child process is closed
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`);
     // send data to browser
+    console.log(python_return)
     res.send(python_return)
   });
 });

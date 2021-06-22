@@ -36,6 +36,7 @@ function create_vis_svg() {
 
 function build_svg(py_data) {
 
+    console.log(py_data)
     py_data = JSON.parse(py_data)
 
     for(let i = 0; i < data.length; i++) {
