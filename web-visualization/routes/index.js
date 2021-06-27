@@ -28,7 +28,6 @@ router.post('/py', function (req, res) {
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`);
     // send data to browser
-    console.log(python_return)
     res.send(python_return)
   });
 });

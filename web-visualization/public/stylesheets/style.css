@@ -28,6 +28,22 @@
   height: 100%;
 }
 
+#emb_result {
+  position: absolute;
+  bottom: 5%;
+  width: 33%;
+  height: 35%;
+  left: 0%;
+}
+
+#nn_result {
+  position: absolute;
+  bottom: 5%;
+  width: 33%;
+  height: 35%;
+  right: 0%;
+}
+
 #text {
   position: absolute;
   display: flex;
