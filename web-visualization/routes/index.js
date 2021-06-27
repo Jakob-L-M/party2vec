@@ -21,13 +21,14 @@ router.post('/py', function (req, res) {
     python_return = data.toString();
   });
   python.stderr.on('data', function (data) {
-    console.log(data);
+    console.log('Error', data);
     python_return = data.toString();
   })
   // in close event we are sure that stream from child process is closed
   python.on('close', (code) => {
     console.log(`child process close all stdio with code ${code}`);
     // send data to browser
+    console.log(python_return)
     res.send(python_return)
   });
 });

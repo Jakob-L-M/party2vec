@@ -139,7 +139,9 @@ function nn_vis(nn_data) {
 
 function build_svg(py_data) {
 
-    py_data = JSON.parse(py_data.replace(/'/g, '"'))
+    console.log(py_data.replace(/'/g, '"').replace(/ /, ' '))
+    
+    py_data = JSON.parse(py_data.replace(/'/g, '"').replace(/ /, ' '))
 
     word_emb_vis(py_data["word_e"])
 
