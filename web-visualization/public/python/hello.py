@@ -1,8 +1,8 @@
 import sys
-from random import random
+import numpy as np
 
 def main(input_text):
-    return [random() for _ in range(6)]
+    return [np.random.random() for _ in range(6)]
  
 if __name__ == "__main__":
     # sys.argv[1] = Text in textfield
