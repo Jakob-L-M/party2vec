@@ -9,3 +9,4 @@ word_embedding/test_afd_linke.ipynb
 word_embedding/embeddings_old/
 *.hdf5
 *.tsv
+models/model.txt
