@@ -1,6 +1,10 @@
 from flask import Flask, render_template
-app = Flask(__name__)
+import spacy
+from static.py_scripts.nn_forest import nn_forest
 
+app = Flask(__name__)
+nlp = spacy.load('de_core_news_lg')
+nn = nn_forest()
 
 @app.route('/')
 def index():
@@ -9,8 +13,7 @@ def index():
 
 @app.route('/py/<name>')
 def py(name):
-    print(name)
-    return {'embedding': [2,3,4,5,6,7], 'nn_forest': [1,2,2,2,2,2], 'tfidf': 2}
+    return {'embedding': [2,3,4,5,6,7], 'nn_forest': nn.predict(nlp(name).vector), 'tfidf': 2}
 
 
 if __name__ == '__main__':
