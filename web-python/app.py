@@ -1,10 +1,22 @@
 from flask import Flask, render_template
 import spacy
+import re
 from static.py_scripts.nn_forest import nn_forest
+from static.py_scripts.embedding import RnnModel2
 
 app = Flask(__name__)
 nlp = spacy.load('de_core_news_lg')
 nn = nn_forest()
+rnn = RnnModel2(300, 50)
+
+def pre_processing(text):
+    # Copied form ./cleaned-data/cleaning_data.ipynb
+    # Replacing German umlauts with the corresponding English letters
+    text = text.replace("ä","ae").replace("Ä","Äe").replace("ö","oe").replace("Ö","Oe").replace("ü","ue").replace("Ü","Ue").replace("ß","ss")
+    text = re.sub(r"@\S+", "user", text) # Replacing all tags to default "user"
+    # Deleting all hashtags, emoticons, links and non alphanumeric characters from the text
+    text = re.sub(r'http\S+', '', text)
+    return text # re.sub(r"[^0-9A-Za-z ]"," ",text)
 
 @app.route('/')
 def index():
@@ -13,7 +25,12 @@ def index():
 
 @app.route('/py/<name>')
 def py(name):
-    return {'embedding': [2,3,4,5,6,7], 'nn_forest': nn.predict(nlp(name).vector), 'tfidf': 2}
+    return {'embedding': rnn.predict(nlp(name)), 'nn_forest': nn.predict(nlp(name).vector), 'tfidf': 2}
+
+
+@app.route('/clean/<name>')
+def clean(name):
+    return {'clean': pre_processing(name)}
 
 
 if __name__ == '__main__':

@@ -1,44 +1,63 @@
 #title {
-  font-size: 1000%;
+  font-size: 500%;
   font-family: 'Odibee Sans', cursive;
   position: absolute;
   text-align: center;
   left: 00%;
   width: 100%;
-  top: 10%;
+  top: 5%;
 }
 
 #embedding {
   position: absolute;
-  bottom: 5%;
-  width: 33%;
-  height: 35%;
-  left: 0%;
+  top: 15%;
+  width: 25%;
+  height: 50%;
+  left: 50%;
+}
+
+#embedding #embedding_text {
+  position: absolute;
+  font-size: 200%;
+  text-align: center;
+  font-family: 'Odibee Sans', cursive;
+  width: 25%;
+  right: 37.5%;
+  top: 40%;
 }
 
 #nn_forest {
   position: absolute;
-  bottom: 5%;
-  width: 33%;
-  height: 35%;
+  top: 15%;
+  width: 25%;
+  height: 50%;
   right: 0%;
+}
+
+#nn_forest #nn_forest_text {
+  position: absolute;
+  font-size: 200%;
+  text-align: center;
+  font-family: 'Odibee Sans', cursive;
+  width: 25%;
+  right: 37.5%;
+  top: 40%;
 }
 
 #text {
   position: absolute;
-  display: flex;
-  align-items: center;
-  top: 35%;
-  width: 50%;
-  height: 15%;
-  left: 25%;
+  top: 25%;
+  width: 45%;
+  height: 70%;
+  left: 5%;
 }
+
 #text #input_field {
   position: absolute;
   font-size: 1.37em;
   width: 100%;
   top: 0%;
-  height: 75%;
+  height: 30%;
   padding: 0px;
   margin: 0px;
   border: rgb(12, 156, 156) dotted 2px;
@@ -47,9 +66,22 @@
 
 #text #classify_button {
   position: absolute;
-  bottom: 0%;
+  top: 75%;
   padding: 0px;
   margin: 0px;
   width: 100%;
-  height: 15%;
+  height: 5%;
+}
+
+#text #cleaned_text {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  height: 30%;
+  left: 0%;
+  padding: 0px;
+  margin: 0px;
+  border: rgb(12, 156, 156) dotted 2px;
+  resize: none;
+  font-size: 1.37em;
 }

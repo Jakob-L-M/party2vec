@@ -14,6 +14,8 @@ function handleMouseOver(mouse_event, data) {
         .innerRadius(radius * 0.65)         // This is the size of the donut hole
         .outerRadius(radius * 1.25)
         .padAngle(0.03))
+    let id = mouse_event.fromElement.id.substring(4)
+    document.getElementById(`${id}_text`).textContent = (data.data[`${id}`] * 100).toFixed(2) + '%'
 }
 
 function handleMouseOut(mouse_event, data) {
@@ -22,18 +24,36 @@ function handleMouseOut(mouse_event, data) {
         .outerRadius(radius)
         .padAngle(0.03)
     )
+    document.getElementById(`${mouse_event.toElement.id.substring(4)}_text`).textContent = " "
 }
 
 // function to create half circle diagramm
 function create_vis_svg() {
     // data creation call
-    get_data(document.getElementById('input_field').value)
+    get_data(document.getElementById('cleaned_text').value)
+}
+
+document.getElementById('input_field').addEventListener('input', function () {
+
+    document.getElementById('cleaned_text').value = clean_text(document.getElementById('input_field').value)
+
+})
+
+function clean_text(string) {
+    let text = string.replace("ä", "ae").replace("Ä", "Äe").replace("ö", "oe").replace("Ö", "Oe").replace(/ü/g, "ue").replace("Ü", "Ue").replace("ß", "ss")
+    text = text.replace(/http\S+/g, '')
+    text = text.replace(/@\S+/, "user")
+    text = text.replace(/[^0-9A-Za-z ]/g, " ").replace(/ +/g, " ")
+    if (text[0] == " ") {
+        text = text.substring(1)
+    }
+    return text
 }
 
 function word_emb_vis(emb_data) {
     // emb_data is a array of length including percentages for each party
     for (let i = 0; i < data.length; i++) {
-        data[i].percent = emb_data[i]
+        data[i]['embedding'] = emb_data[i]
     }
     create_gauge(data, 'embedding')
 }
@@ -41,7 +61,7 @@ function word_emb_vis(emb_data) {
 function nn_vis(nn_data) {
     // emb_data is a array of length including percentages for each party
     for (let i = 0; i < data.length; i++) {
-        data[i].percent = nn_data[i]
+        data[i]['nn_forest'] = nn_data[i]
     }
     create_gauge(data, 'nn_forest')
 }
@@ -56,32 +76,34 @@ function build_svg(py_data) {
 }
 
 function create_gauge(data, id) {
-    document.getElementById(id).innerHTML = ''
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = `<p id='${id}_text'> </p>`
+    }
 
     // get height/width/margin
     var width = document.getElementById(id).clientWidth
     height = document.getElementById(id).clientHeight
-    margin = Math.min(width, height * 2) * 0.15
+    margin = Math.min(width, height) * 0.15
 
-    var radius = Math.min(width, height * 2) / 2 - margin
+    var radius = Math.min(width, height) / 2 - margin
     this.radius = radius
 
     // append the svg object to vis div | id='vis_result'
     var svg = d3.select(`#${id}`)
         .append("svg")
-        .attr("id", "svg")
+        .attr("id", `svg_${id}`)
         .attr("width", width)
         .attr("height", height)
         .append("g")
-        .attr("transform", `translate(${width / 2},${height})`)
+        .attr("transform", `translate(${width / 2},${height / 2})`)
         .attr("id", "g")
         ;
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
-        .value(function (d) { return d.percent; })
-        .startAngle(-Math.PI / 2)
-        .endAngle(Math.PI / 2)
+        .value(function (d) { return d[id]; })
+        .startAngle(-135 * Math.PI / 180)
+        .endAngle(135 * Math.PI / 180)
     var data_ready = pie(data)
 
     svg
@@ -94,7 +116,7 @@ function create_gauge(data, id) {
             .outerRadius(radius)
             .padAngle(0.03)
         )
-        .attr("class", function (d) { return d.data.party})
+        .attr("class", function (d) { return d.data.party })
         .on("mouseover", handleMouseOver)
         .on("mouseout", handleMouseOut)
         .style('fill', function (d) { return d.data.passive_color })
