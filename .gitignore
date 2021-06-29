@@ -10,3 +10,4 @@ word_embedding/embeddings_old/
 *.hdf5
 *.tsv
 models/model.txt
+word_embedding/models/
