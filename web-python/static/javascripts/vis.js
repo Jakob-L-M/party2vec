@@ -14,8 +14,9 @@ function handleMouseOver(mouse_event, data) {
         .innerRadius(radius * 0.65)         // This is the size of the donut hole
         .outerRadius(radius * 1.25)
         .padAngle(0.03))
-    let id = mouse_event.fromElement.id.substring(4)
-    document.getElementById(`${id}_text`).textContent = (data.data[`${id}`] * 100).toFixed(2) + '%'
+    let id = mouse_event.path[2].id.substring(4)
+    document.getElementById(`${id}_text`).innerHTML = (data.data[`${id}`] * 100).toFixed(2) + '%'
+    
 }
 
 function handleMouseOut(mouse_event, data) {
@@ -24,7 +25,7 @@ function handleMouseOut(mouse_event, data) {
         .outerRadius(radius)
         .padAngle(0.03)
     )
-    document.getElementById(`${mouse_event.toElement.id.substring(4)}_text`).textContent = " "
+    document.getElementById(`${mouse_event.path[2].id.substring(4)}_text`).innerHTML = " "
 }
 
 // function to create half circle diagramm
@@ -42,7 +43,7 @@ document.getElementById('input_field').addEventListener('input', function () {
 function clean_text(string) {
     let text = string.replace("ä", "ae").replace("Ä", "Äe").replace("ö", "oe").replace("Ö", "Oe").replace(/ü/g, "ue").replace("Ü", "Ue").replace("ß", "ss")
     text = text.replace(/http\S+/g, '')
-    text = text.replace(/@\S+/, "user")
+    text = text.replace(/@\S+/g, "user")
     text = text.replace(/[^0-9A-Za-z ]/g, " ").replace(/ +/g, " ")
     if (text[0] == " ") {
         text = text.substring(1)
@@ -73,6 +74,9 @@ function build_svg(py_data) {
     word_emb_vis(py_data["embedding"])
 
     nn_vis(py_data["nn_forest"])
+
+    document.getElementById('tfidf').innerHTML = data[py_data['tfidf']].party
+    document.getElementById('tfidf').style.color = data[py_data['tfidf']].active_color
 }
 
 function create_gauge(data, id) {
