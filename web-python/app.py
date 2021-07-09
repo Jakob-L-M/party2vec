@@ -3,7 +3,7 @@ import spacy
 import re
 from static.py_scripts.nn_forest import nn_forest
 from static.py_scripts.embedding import RnnModel2
-from static.py_scripts.ifidf import svc_model
+from static.py_scripts.tfidf import svc_model
 
 app = Flask(__name__)
 nlp = spacy.load('de_core_news_lg')
