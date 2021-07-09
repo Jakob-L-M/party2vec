@@ -3,11 +3,13 @@ import spacy
 import re
 from static.py_scripts.nn_forest import nn_forest
 from static.py_scripts.embedding import RnnModel2
+from static.py_scripts.ifidf import svc_model
 
 app = Flask(__name__)
 nlp = spacy.load('de_core_news_lg')
 nn = nn_forest()
 rnn = RnnModel2(300, 50)
+svc = svc_model()
 
 def pre_processing(text):
     # Copied form ./cleaned-data/cleaning_data.ipynb
@@ -25,7 +27,7 @@ def index():
 
 @app.route('/py/<name>')
 def py(name):
-    return {'embedding': rnn.predict(nlp(name)), 'nn_forest': nn.predict(nlp(name).vector), 'tfidf': 2}
+    return {'embedding': rnn.predict(nlp(name)), 'nn_forest': nn.predict(nlp(name).vector), 'tfidf': svc.predict([name])}
 
 
 @app.route('/clean/<name>')
