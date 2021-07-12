@@ -94,3 +94,33 @@
   font-size: 500%;
   width: 30%;
 }
+
+#lable_tf {
+  position: absolute;
+  font-family: 'Odibee Sans', cursive;
+  top: 33%;
+  left: 60%;
+  text-align: center;
+  font-size: 150%;
+  width: 30%;
+}
+
+#lable_rnn {
+  position: absolute;
+  font-size: 150%;
+  text-align: center;
+  font-family: 'Odibee Sans', cursive;
+  width: 15%;
+  left: 55%;
+  top: 73%;
+}
+
+#lable_nn {
+  position: absolute;
+  font-size: 150%;
+  text-align: center;
+  font-family: 'Odibee Sans', cursive;
+  width: 15%;
+  left: 80%;
+  top: 73%;
+}
