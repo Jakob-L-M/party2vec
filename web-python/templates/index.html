@@ -13,9 +13,9 @@
 <body>
     <div id="title">Party2vec</div>
     <div id="text">
-        <textarea id="input_field" maxlength="280">Type your tweet here</textarea>
-        <button id="classify_button" onclick="create_vis_svg()">Classify</button>
-        <textarea id="cleaned_text" maxlength="280">Type your tweet here</textarea>
+        <textarea id="input_field" maxlength="280">Ich frage mich, welcher Partei dieser Text wohl zugeordnet wird? #Party2Vec @unimarburg @nlp</textarea>
+        <button class="button" id="classify_button" onclick="create_vis_svg()">Klassifizieren</button>
+        <textarea readonly id="cleaned_text" maxlength="280">Ich frage mich welcher Partei dieser Text wohl zugeordnet wird Party2Vec user user</textarea>
     </div>
     <div id="embedding">
     </div>
@@ -24,6 +24,45 @@
     <div id="lable_tf">TF-IDF</div>
     <div id="lable_nn">Neural Network</div>
     <div id="lable_rnn">Word-Embedding RNN</div>
+    <button class="button" id="about">Über</button>
+    <div id="about_modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <span style="white-space: pre-line">Party2Vec ist ein Studierenden-Projekt.
+
+            Gestartet wurde es durch die Vorlesung "Introduction to Natural Language Processing". In der Vorlesung wurden uns sechs Wochen Zeit gegeben, um ein eigenes Projekt zu entwickeln.
+
+            Wir haben es uns zur Aufgabe gemacht Tweets von Politiker*innen zu Klassifizieren. Auf dieser Website können unsere Ergebnisse interaktiv betrachtet werden. Einfach einen Text in das obere Textfeld schreiben und aus 'Klassifizieren' drücken.
+
+            Im unteren Textfeld ist zu sehen wie der Text nach der Vorverarbeitung aussieht.
+            
+            Die Farben werden den Parteien folgender Maßen zugeordnet. Blau: AfD, Rot: SPD, Schwarz: Union, Grün: B90/Die Grünen, Gelb: FDP, Lila: Die Linke.
+
+            Weitere Informationen rund um unser Projekt und eine schriftliche Ausarbeitung(englisch), findet ihr in unserem Repo: https://github.com/Jakob-L-M/party2vec.
+
+            Sven Löchte - loechte@student.uni-marburg.de
+            Taras Horbatiuk - horbatiu@students.uni-marburg.de
+            Jakob Leander Müller - muelle5t@students.uni-marburg.de
+        </span>
+        </div>
+      </div>
+      <script>
+        var modal = document.getElementById("about_modal");
+        var btn = document.getElementById("about");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+        
 </body>
 
 </html>

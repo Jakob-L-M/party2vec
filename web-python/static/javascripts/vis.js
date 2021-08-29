@@ -8,6 +8,8 @@ var data = [{ id: 1, party: 'Afd', passive_color: '#3D3BFB', active_color: '#1A1
 
 var radius;
 
+var first_classification = true;
+
 // handle mouse events
 function handleMouseOver(mouse_event, data) {
     d3.selectAll(`.${mouse_event.target.classList.value}`).style('fill', data.data.active_color).attr('d', d3.arc()
@@ -137,6 +139,13 @@ function get_data(input_text) {
 
     function callbackFunc(response) {
         // do something with the response
+        if (first_classification) {
+            document.getElementById('lable_tf').style.visibility = 'visible'
+            document.getElementById('lable_rnn').style.visibility = 'visible'
+            document.getElementById('lable_nn').style.visibility = 'visible'
+            first_classification = false
+        }
+
         build_svg(response);
     }
 
