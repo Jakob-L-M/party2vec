@@ -1,5 +1,30 @@
 # party2vec
 
+Party2vec is a student programm that aims towards classifing german tweets into the six biggest political parties.
+
+The usecase is a prediction of a ploitical orientation based on relativly short texts like tweets. We will use a combination of different Approches to get the best results.
+
+## Results
+
+### Classifing official Party Twitter Profiles
+
+TODO
+
+### Classifing Tweets of politicans that are not in our training set
+
+TODO
+-Laschet, Baerbock, Schloz, Söder ???
+
+### Classifing party advertisments
+TODO
+
+## Dataset
+
+105 Politicans and ~3.5 years of tweets. Adding to 300k Tweets
+
+
+## Older Formulation:
+
 ## Research Problem
 Can German parties be classified by the political tweets of their 'Bundestag' members? To tackle this problem, we want to create word embeddings for each party with at least ten politicians in the 19th 'Bundestag'.
 
