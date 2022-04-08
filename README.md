@@ -6,6 +6,8 @@ The usecase is a prediction of a ploitical orientation based on relativly short 
 
 ## Results
 
+If you are interested to read a in depth report about this project, please take a look at our project report ('project_report.pdf'). The file is a root level of the repository.
+
 ### Classifing official Party Twitter Profiles
 
 TODO
